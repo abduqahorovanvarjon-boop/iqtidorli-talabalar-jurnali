@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Iqtidorli Talabalar Jurnali</title>
+  <meta name="description" content="Iqtidorli Talabalar Jurnali — yosh tadqiqotchilar, magistrantlar va talabalar uchun ilmiy-amaliy elektron jurnal." />
+  <style>
+    :root{
+      --primary:#1f4e79;
+      --primary-dark:#163a5a;
+      --accent:#d7a331;
+      --bg:#f4f7fb;
+      --card:#ffffff;
+      --text:#1d2733;
+      --muted:#64748b;
+      --border:#d8e0ea;
+      --light:#edf4fb;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family: Georgia, "Times New Roman", serif;
+      background:var(--bg);
+      color:var(--text);
+      line-height:1.65;
+    }
+    a{color:inherit;text-decoration:none}
+    .topbar{
+      background:var(--primary-dark);
+      color:#fff;
+      font-family: Arial, sans-serif;
+      font-size:14px;
+    }
+    .topbar .wrap{
+      max-width:1180px;
+      margin:0 auto;
+      padding:8px 18px;
+      display:flex;
+      justify-content:space-between;
+      gap:16px;
+      flex-wrap:wrap;
+    }
+    header{
+      background:linear-gradient(135deg,var(--primary),#2c6fa6);
+      color:#fff;
+      border-bottom:5px solid var(--accent);
+    }
+    .header-wrap{
+      max-width:1180px;
+      margin:0 auto;
+      padding:30px 18px 26px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:24px;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:16px;
+    }
+    .logo{
+      width:74px;
+      height:74px;
+      border-radius:50%;
+      background:#fff;
+      color:var(--primary);
+      display:grid;
+      place-items:center;
+      font-weight:700;
+      font-size:24px;
+      border:4px solid rgba(255,255,255,.45);
+      box-shadow:0 10px 25px rgba(0,0,0,.18);
+      font-family: Arial, sans-serif;
+    }
+    h1{
+      margin:0;
+      font-size:34px;
+      letter-spacing:.2px;
+      line-height:1.15;
+    }
+    .subtitle{
+      margin:7px 0 0;
+      opacity:.92;
+      font-family: Arial, sans-serif;
+      font-size:15px;
+    }
+    .header-actions{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+      font-family: Arial, sans-serif;
+    }
+    .btn{
+      display:inline-block;
+      padding:11px 16px;
+      border-radius:6px;
+      background:var(--accent);
+      color:#1b1b1b;
+      font-weight:700;
+      font-family: Arial, sans-serif;
+      border:1px solid rgba(0,0,0,.08);
+      transition:.2s;
+      cursor:pointer;
+    }
+    .btn:hover{transform:translateY(-1px);filter:brightness(.98)}
+    .btn.secondary{
+      background:rgba(255,255,255,.14);
+      color:#fff;
+      border:1px solid rgba(255,255,255,.35);
+    }
+    nav{
+      background:#fff;
+      border-bottom:1px solid var(--border);
+      position:sticky;
+      top:0;
+      z-index:20;
+      box-shadow:0 4px 16px rgba(15,23,42,.05);
+      font-family: Arial, sans-serif;
+    }
+    nav .wrap{
+      max-width:1180px;
+      margin:0 auto;
+      padding:0 18px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+    }
+    .menu{
+      display:flex;
+      gap:2px;
+      flex-wrap:wrap;
+    }
+    .menu a{
+      padding:15px 13px;
+      color:#234;
+      font-weight:700;
+      font-size:15px;
+      border-bottom:3px solid transparent;
+    }
+    .menu a:hover{
+      background:var(--light);
+      border-bottom-color:var(--accent);
+    }
+    .search{
+      display:flex;
+      align-items:center;
+      gap:6px;
+    }
+    .search input{
+      width:190px;
+      padding:9px 10px;
+      border:1px solid var(--border);
+      border-radius:5px;
+      font-family: Arial, sans-serif;
+    }
+    .mobile-btn{
+      display:none;
+      background:var(--primary);
+      color:#fff;
+      border:0;
+      padding:10px 12px;
+      border-radius:5px;
+      font-weight:700;
+    }
+    .hero{
+      max-width:1180px;
+      margin:26px auto 0;
+      padding:0 18px;
+      display:grid;
+      grid-template-columns:2fr 1fr;
+      gap:22px;
+    }
+    .hero-card{
+      background:#fff;
+      padding:28px;
+      border-radius:10px;
+      box-shadow:0 12px 28px rgba(15,23,42,.08);
+      border:1px solid var(--border);
+    }
+    .hero-card h2{
+      margin:0 0 10px;
+      font-size:30px;
+      line-height:1.25;
+      color:var(--primary-dark);
+    }
+    .hero-card p{margin:0 0 18px;color:#334155}
+    .notice{
+      background:#fff9e8;
+      border:1px solid #eed392;
+      border-left:5px solid var(--accent);
+      padding:14px 16px;
+      border-radius:7px;
+      font-family: Arial, sans-serif;
+      color:#3b310f;
+      margin-top:18px;
+    }
+    .stats{
+      display:grid;
+      gap:12px;
+    }
+    .stat{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:10px;
+      padding:18px;
+      box-shadow:0 10px 24px rgba(15,23,42,.06);
+    }
+    .stat strong{
+      display:block;
+      color:var(--primary);
+      font-size:30px;
+      line-height:1;
+      font-family: Arial, sans-serif;
+    }
+    .stat span{
+      color:var(--muted);
+      font-family: Arial, sans-serif;
+      font-size:14px;
+    }
+    main{
+      max-width:1180px;
+      margin:24px auto;
+      padding:0 18px;
+      display:grid;
+      grid-template-columns:2fr 330px;
+      gap:22px;
+      align-items:start;
+    }
+    section, aside .box{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:10px;
+      padding:24px;
+      box-shadow:0 10px 24px rgba(15,23,42,.05);
+      margin-bottom:22px;
+    }
+    section h2, aside h3{
+      margin-top:0;
+      color:var(--primary-dark);
+      line-height:1.25;
+    }
+    .section-title{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:15px;
+      border-bottom:1px solid var(--border);
+      padding-bottom:12px;
+      margin-bottom:16px;
+    }
+    .section-title h2{margin:0}
+    .badge{
+      background:var(--light);
+      color:var(--primary);
+      border:1px solid #c9daea;
+      padding:5px 9px;
+      border-radius:999px;
+      font-family: Arial, sans-serif;
+      font-size:13px;
+      font-weight:700;
+      white-space:nowrap;
+    }
+    .article{
+      padding:18px 0;
+      border-bottom:1px solid var(--border);
+    }
+    .article:last-child{border-bottom:0}
+    .article h3{
+      margin:0 0 8px;
+      color:#0f3555;
+      font-size:21px;
+      line-height:1.35;
+    }
+    .meta{
+      color:var(--muted);
+      font-size:14px;
+      font-family: Arial, sans-serif;
+      margin-bottom:8px;
+    }
+    .keywords{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      margin-top:12px;
+      font-family: Arial, sans-serif;
+    }
+    .keywords span{
+      background:#f1f5f9;
+      border:1px solid #d8e0ea;
+      color:#475569;
+      font-size:13px;
+      padding:4px 8px;
+      border-radius:4px;
+    }
+    .grid-2{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:14px;
+    }
+    .small-card{
+      background:#f8fbfe;
+      border:1px solid var(--border);
+      border-radius:8px;
+      padding:16px;
+    }
+    .small-card h3{
+      margin:0 0 8px;
+      color:var(--primary);
+    }
+    .list{
+      margin:0;
+      padding-left:20px;
+    }
+    .list li{margin:6px 0}
+    aside{
+      position:sticky;
+      top:72px;
+    }
+    .side-list{
+      list-style:none;
+      padding:0;
+      margin:0;
+      font-family: Arial, sans-serif;
+    }
+    .side-list li{
+      border-bottom:1px solid var(--border);
+      padding:10px 0;
+    }
+    .side-list li:last-child{border-bottom:0}
+    .side-list a{color:var(--primary);font-weight:700}
+    .archive-item{
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      padding:11px 0;
+      border-bottom:1px solid var(--border);
+      font-family: Arial, sans-serif;
+    }
+    .archive-item:last-child{border-bottom:0}
+    form{
+      display:grid;
+      gap:12px;
+      font-family: Arial, sans-serif;
+    }
+    input, textarea, select{
+      width:100%;
+      padding:11px 12px;
+      border:1px solid var(--border);
+      border-radius:6px;
+      font:inherit;
+      background:#fff;
+    }
+    textarea{min-height:120px;resize:vertical}
+    footer{
+      background:var(--primary-dark);
+      color:#fff;
+      margin-top:28px;
+      font-family: Arial, sans-serif;
+    }
+    footer .wrap{
+      max-width:1180px;
+      margin:0 auto;
+      padding:30px 18px;
+      display:grid;
+      grid-template-columns:2fr 1fr 1fr;
+      gap:24px;
+    }
+    footer h3{margin:0 0 10px;color:#fff}
+    footer p, footer a{color:#dce8f4}
+    .copyright{
+      border-top:1px solid rgba(255,255,255,.15);
+      text-align:center;
+      padding:14px;
+      color:#cbd5e1;
+      font-size:14px;
+    }
+    .backtop{
+      position:fixed;
+      right:18px;
+      bottom:18px;
+      background:var(--accent);
+      color:#111;
+      width:42px;
+      height:42px;
+      display:grid;
+      place-items:center;
+      border-radius:50%;
+      font-weight:900;
+      box-shadow:0 10px 20px rgba(0,0,0,.18);
+      font-family: Arial, sans-serif;
+    }
+    @media(max-width:900px){
+      .header-wrap,.hero,main,footer .wrap{grid-template-columns:1fr;display:grid}
+      .header-wrap{align-items:start}
+      .header-actions{justify-content:flex-start}
+      aside{position:static}
+      .grid-2{grid-template-columns:1fr}
+      nav .wrap{display:block;padding:10px 18px}
+      .mobile-btn{display:block;margin:0 0 10px auto}
+      .menu,.search{display:none}
+      nav.open .menu, nav.open .search{display:flex}
+      nav.open .menu{flex-direction:column}
+      nav.open .search{padding:10px 0}
+      .search input{width:100%}
+      h1{font-size:28px}
+      .hero-card h2{font-size:25px}
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="wrap">
+      <span>Elektron ilmiy-amaliy jurnal</span>
+      <span>Email: abduqahorovanvarjon@gmail.com | Tel: +998 90 445 03 16</span>
+    </div>
+  </div>
+
+  <header id="top">
+    <div class="header-wrap">
+      <div class="brand">
+        <div class="logo">ITJ</div>
+        <div>
+          <h1>Iqtidorli Talabalar Jurnali</h1>
+          <p class="subtitle">Talabalar, magistrantlar va yosh olimlar uchun ilmiy maqolalar platformasi</p>
+        </div>
+      </div>
+      <div class="header-actions">
+        <a class="btn secondary" href="#submit">Maqola yuborish</a>
+        <a class="btn" href="#current">1-son</a>
+      </div>
+    </div>
+  </header>
+
+  <nav id="nav">
+    <div class="wrap">
+      <button class="mobile-btn" onclick="document.getElementById('nav').classList.toggle('open')">Menyu</button>
+      <div class="menu">
+        <a href="#home">Bosh sahifa</a>
+        <a href="#current">1-son</a>
+        <a href="#about">Jurnal haqida</a>
+        <a href="#editorial">Tahririyat</a>
+        <a href="#submit">Maqola topshirish</a>
+        <a href="#contact">Aloqa</a>
+      </div>
+      <div class="search">
+        <input type="search" placeholder="Qidirish..." />
+        <a class="btn" href="#current">Search</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="hero" id="home">
+    <div class="hero-card">
+      <span class="badge">2026-yil | 1-son</span>
+      <h2>Iqtidorli talabalar ilmiy izlanishlari uchun yangi elektron jurnal</h2>
+      <p>
+        “Iqtidorli Talabalar Jurnali” — oliy ta’lim muassasalari talabalari, magistrantlari va yosh tadqiqotchilarining
+        ilmiy izlanishlarini qo‘llab-quvvatlashga mo‘ljallangan yangi elektron ilmiy-amaliy jurnaldir.
+      </p>
+      <a class="btn" href="#submit">Maqola yuborish tartibi</a>
+      <div class="notice">
+        E’lon: Jurnalning 1-soni uchun maqolalar qabuli davom etmoqda. Maqolalar o‘zbek, rus yoki ingliz tillarida qabul qilinadi.
+      </div>
+    </div>
+    <div class="stats">
+      <div class="stat"><strong>1-son</strong><span>jurnalning ilk soni tayyorlanmoqda</span></div>
+      <div class="stat"><strong>24/7</strong><span>elektron murojaat</span></div>
+      <div class="stat"><strong>0</strong><span>maqolalar tez orada joylanadi</span></div>
+    </div>
+  </div>
+
+  <main>
+    <div>
+      <section id="current">
+        <div class="section-title">
+          <h2>1-son</h2>
+          <span class="badge">2026-yil</span>
+        </div>
+        <p>
+          Jurnalning 1-soni hozirda shakllantirilmoqda. Maqolalar tahririyat tomonidan qabul qilinib,
+          ko‘rib chiqilgach, ushbu sahifaga joylashtiriladi.
+        </p>
+        <div class="notice">
+          Hozircha maqolalar joylanmagan. 1-son uchun maqola yuborish istagida bo‘lgan mualliflar quyidagi aloqa ma’lumotlari orqali murojaat qilishlari mumkin.
+        </div>
+      </section>
+
+      <section id="about">
+        <div class="section-title">
+          <h2>Jurnal haqida</h2>
+          <span class="badge">Yangi jurnal</span>
+        </div>
+        <p>
+          “Iqtidorli Talabalar Jurnali” — talabalar va yosh tadqiqotchilarning ilmiy izlanishlarini ommalashtirish,
+          ilmiy maqola yozish madaniyatini rivojlantirish hamda ta’lim, fan va innovatsiya sohalarida yangi g‘oyalarni qo‘llab-quvvatlashga qaratilgan jurnaldir.
+        </p>
+        <div class="grid-2">
+          <div class="small-card">
+            <h3>Maqsad</h3>
+            <p>Yosh tadqiqotchilarning ilmiy salohiyatini oshirish va ularning izlanishlarini keng jamoatchilikka yetkazish.</p>
+          </div>
+          <div class="small-card">
+            <h3>Yo‘nalishlar</h3>
+            <p>Pedagogika, tarix, filologiya, iqtisodiyot, axborot texnologiyalari, ijtimoiy fanlar va boshqa sohalar.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="submit">
+        <div class="section-title">
+          <h2>Maqola topshirish</h2>
+          <span class="badge">Qabul davom etmoqda</span>
+        </div>
+        <p>Maqola yuborish uchun quyidagi talablarga e’tibor bering:</p>
+        <ul class="list">
+          <li>Maqola ilmiy uslubda yozilgan bo‘lishi kerak.</li>
+          <li>Annotatsiya, kalit so‘zlar va foydalanilgan adabiyotlar keltirilishi lozim.</li>
+          <li>Matn plagiatdan xoli bo‘lishi kerak.</li>
+          <li>Fayl formati: word.</li>
+        </ul>
+        <div class="notice">
+          Maqolangizni yuborish uchun email manzilga yozing: <strong>abduqahorovanvarjon@gmail.com</strong><br>
+          Telefon orqali murojaat: <strong>+998 90 445 03 16</strong>
+        </div>
+      </section>
+
+      <section id="editorial">
+        <div class="section-title">
+          <h2>Tahririyat kengashi</h2>
+          <span class="badge">Tez orada</span>
+        </div>
+        <p>
+          Tahririyat kengashi haqidagi ma’lumotlar shakllantirilmoqda. Ma’lumotlar tasdiqlangach ushbu bo‘limga joylashtiriladi.
+        </p>
+      </section>
+    </div>
+
+    <aside>
+      <div class="box">
+        <h3>Jurnal ma’lumotlari</h3>
+        <ul class="side-list">
+          <li><strong>Nomi:</strong> Iqtidorli Talabalar Jurnali</li>
+          <li><strong>Tili:</strong> O‘zbek, rus, ingliz</li>
+          <li><strong>Davriyligi:</strong> Belgilanmoqda</li>
+          <li><strong>Format:</strong> Elektron jurnal</li>
+          <li><strong>Holati:</strong> 1-son uchun maqolalar qabul qilinmoqda</li>
+        </ul>
+      </div>
+
+      <div class="box">
+        <h3>E’lonlar</h3>
+        <p>Jurnalning 1-soni uchun maqolalar qabul qilinmoqda.</p>
+        <a class="btn" href="#submit">Murojaat qilish</a>
+      </div>
+
+      <div class="box">
+        <h3>Aloqa</h3>
+        <ul class="side-list">
+          <li><strong>Email:</strong> abduqahorovanvarjon@gmail.com</li>
+          <li><strong>Tel:</strong> +998 90 445 03 16</li>
+          <li><strong>Manzil:</strong> O‘zbekiston</li>
+        </ul>
+      </div>
+    </aside>
+  </main>
+
+  <footer id="contact">
+    <div class="wrap">
+      <div>
+        <h3>Navoiy davlat universiteti Iqtidorli Talabalar Jurnali</h3>
+        <p>Talabalar va yosh tadqiqotchilar ilmiy ishlari uchun ilmiy-amaliy jurnal.</p>
+      </div>
+      <div>
+        <h3>Aloqa</h3>
+        <p>Email: abduqahorovanvarjon@gmail.com<br>Tel: +998 90 445 03 16<br>Manzil: O‘zbekiston</p>
+      </div>
+      <div>
+        <h3>Bo‘limlar</h3>
+        <p><a href="#current">1-son</a><br><a href="#about">Jurnal haqida</a><br><a href="#submit">Maqola topshirish</a></p>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Iqtidorli Talabalar Jurnali. Barcha huquqlar himoyalangan.</div>
+  </footer>
+
+  <a class="backtop" href="#top">↑</a>
+</body>
+</html>
